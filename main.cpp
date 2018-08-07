@@ -27,7 +27,7 @@ void getInfor( int &i, int &ID , string &name, int &age, float &mark_1, float &m
     cout << "Nhap tuoi sinh vien:"; cin >> age;
     cout << "Nhap diem ky 1 cua thang nay: "; cin >> mark_1;
     cout << "Nhap diem ky 2 cua thang nay: "; cin >> mark_2;
-    mark = (mark_1 + mark_2)/2;
+    mark = ((mark_1 + mark_2)/2);
 }
 
 void printInfor(student s)
@@ -62,7 +62,7 @@ int main()
     }
     for (i = 0; i < N;i++)
     {
-        if (group[i].mark = mP)
+        if (group[i].mark == mP)
             {
                 j = j+1;
                 num_max = num_max + 1;
