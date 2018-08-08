@@ -16,29 +16,9 @@ struct student
     float mark;
 };
 
-void getInfor( int &i, int &ID, string &name, int &age, float &mark_1, float &mark_2, float &mark)
-{
-    cout <<"--------------" << endl;
-    cout <<"Sinh vien thu " << i + 1 << endl;
-    cout <<"--------------" << endl;
-    cout << "Nhap ID sinh vien: ";
-    cin >> ID;
-    fflush(stdin);
-    cout << "Nhap ten sinh vien:";
-    getline(cin,name);
-    cout << "Nhap tuoi sinh vien:";
-    cin >> age;
-    cout << "Nhap diem ky 1 cua thang nay: ";
-    cin >> mark_1;
-    cout << "Nhap diem ky 2 cua thang nay: ";
-    cin >> mark_2;
-    mark = ((mark_1 + mark_2)/2);
-}
+void setInfor( int &i, int &ID, string &name, int &age, float &mark_1, float &mark_2, float &mark);
 
-void printInfor(student s)
-{
-    cout << s.ID << "_" << s.name << "_" << s.mark << endl;
-}
+void printList (student list[] , int num );
 
 int main()
 {
@@ -62,7 +42,7 @@ int main()
         student improve[N];
         for(i = 0; i < N ; i++)
         {
-            getInfor(i, group[i].ID, group[i].name, group[i].age, group[i].mark_1, group[i].mark_2, group[i].mark);
+            setInfor(i, group[i].ID, group[i].name, group[i].age, group[i].mark_1, group[i].mark_2, group[i].mark);
         }
         system("cls");
         mP = group[0].mark;
@@ -83,6 +63,7 @@ int main()
             if (group[i].mark_2 > group[i].mark_1)
             {
                 k = k + 1;
+                num_improve = num_improve + 1;
                 improve[k] = group[i];
             }
         }
@@ -92,36 +73,43 @@ int main()
         cout << "So sinh vien cua lop: " << N << endl;
         cout << "Diem trung binh cuoi nam cua ca lop: " << group_mark << endl;
         cout << "Nhung sinh vien co diem cuoi nam cao nhat: " << endl;
-        if (num_max == 1)
-        {
-            printInfor(top[0]);
-        }
-        else
-        {
-            for (i = 0; i < num_max ; i++)
-            {
-                cout << i + 1 << "> ";
-                printInfor(top[i]);
-            }
-        }
+        printList (top, num_max);
         cout << "Nhung sinh vien co tien bo: " << endl;
-        if (num_improve == 1)
-        {
-            printInfor(improve[0]);
-        }
-        else if( num_improve == 0)
-            cout << "Nobody :(" << endl;
-        else
-        {
-            for (i = 0; i < num_improve ; i++)
-            {
-                cout << i + 1 << "> ";
-                printInfor(improve[i]);
-            }
-        }
+        printList(improve , num_improve);
         cout << "Ban co muon tiep tuc (c/k): ";
         cin >> s;
+        system ("cls");
     }
     while(s != 'k');
 }
+
+void setInfor( int &i, int &ID, string &name, int &age, float &mark_1, float &mark_2, float &mark)
+{
+    cout <<"--------------" << endl;
+    cout <<"Sinh vien thu " << i + 1 << endl;
+    cout <<"--------------" << endl;
+    cout << "Nhap ID sinh vien: ";
+    cin >> ID;
+    fflush(stdin);
+    cout << "Nhap ten sinh vien:";
+    getline(cin,name);
+    cout << "Nhap tuoi sinh vien:";
+    cin >> age;
+    cout << "Nhap diem ky 1 cua thang nay: ";
+    cin >> mark_1;
+    cout << "Nhap diem ky 2 cua thang nay: ";
+    cin >> mark_2;
+    mark = ((mark_1 + mark_2)/2);
+}
+void printList (student list[] , int num )
+{
+    if (num == 1) cout << list[0].ID << "_" << list[0].name << "_" << list[0].mark << "p" << endl;
+    else
+    for (int i = 0; i < num ; i++)
+    {
+        cout << i + 1 << "> " << list[i].ID << "_" << list[i].name << "_" << list[i].mark << "p" << endl;
+    }
+}
+
+
 
